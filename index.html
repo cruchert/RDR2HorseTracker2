@@ -7,20 +7,15 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            padding: 2vw; /* Relative padding */
+            padding: 2vw;
             background-color: #1a1a1a;
             color: #e0e0e0;
-            margin: 0; /* Remove default margin */
+            margin: 0;
         }
         h1 {
             color: #ffffff;
-            font-size: 1.5rem; /* Larger on mobile */
+            font-size: 1.5rem;
             margin-bottom: 1rem;
-        }
-        h2 {
-            color: #ffffff;
-            font-size: 1.3rem;
-            margin-top: 1.5rem;
         }
         h3 {
             color: #ffffff;
@@ -31,26 +26,26 @@
         label {
             display: flex;
             align-items: center;
-            margin: 0.5rem 0 0.5rem 1.5rem; /* Flexible spacing */
-            font-size: 1rem; /* Readable size */
-            word-wrap: break-word; /* Wrap long text */
+            margin: 0.5rem 0 0.5rem 1.5rem;
+            font-size: 1rem;
+            word-wrap: break-word;
         }
         input[type="checkbox"] {
             margin-right: 0.75rem;
-            width: 1.2rem; /* Larger tap target */
+            width: 1.2rem;
             height: 1.2rem;
         }
-        .common { color: #ffffff; } /* White for common */
-        .uncommon { color: #00cc00; } /* Green for uncommon */
-        .awarded { color: #00b7eb; } /* Blue for awarded */
+        .common { color: #ffffff; }
+        .uncommon { color: #00cc00; }
+        .awarded { color: #00b7eb; }
         .checked { text-decoration: line-through; }
         .tab {
             overflow: hidden;
             border-bottom: 1px solid #444;
             margin-bottom: 1rem;
             display: flex;
-            flex-wrap: wrap; /* Allow wrapping on small screens */
-            gap: 0.5rem; /* Space between buttons */
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
         .tab button {
             background-color: #333;
@@ -60,8 +55,8 @@
             cursor: pointer;
             padding: 0.75rem 1.5rem;
             transition: background-color 0.3s;
-            flex: 1; /* Equal width, adjusts on wrap */
-            min-width: 120px; /* Prevent too-small buttons */
+            flex: 1;
+            min-width: 120px;
             font-size: 1rem;
         }
         .tab button:hover { background-color: #555; }
@@ -70,11 +65,8 @@
             display: none;
             padding: 0.5rem;
         }
-
-        /* Media query for smaller screens */
         @media (max-width: 600px) {
             h1 { font-size: 1.3rem; }
-            h2 { font-size: 1.1rem; }
             h3 { font-size: 1rem; }
             label { font-size: 0.9rem; margin-left: 1rem; }
             .tab button { padding: 0.5rem 1rem; font-size: 0.9rem; }
@@ -109,18 +101,21 @@
                 },
                 "Andalusian": {
                     "Dark Bay": { source: "Stable", stable: "Strawberry Stable", rarity: "uncommon" },
-                    "Rose Grey": { source: "Stable", stable: "Van Horn Stable", rarity: "uncommon" }
+                    "Rose Grey": { source: "Stable", stable: "Van Horn Stable", rarity: "uncommon" },
+                    "Perlino": { source: "Wild", rarity: "uncommon" }
                 },
                 "Appaloosa": {
                     "Blanket": { source: "Wild", rarity: "common" },
                     "Leopard": { source: "Wild", rarity: "common" },
                     "Brown Leopard": { source: "Stable", stable: "Tumbleweed Stable", rarity: "uncommon" },
-                    "Leopard Blanket": { source: "Stable", stable: "Van Horn Stable", rarity: "uncommon" }
+                    "Leopard Blanket": { source: "Stable", stable: "Van Horn Stable", rarity: "uncommon" },
+                    "Few Spots": { source: "Wild", rarity: "uncommon" }
                 },
                 "Arabian": {
                     "White": { source: "Wild", rarity: "uncommon" },
                     "Black": { source: "Stable", stable: "Saint Denis Stable", rarity: "uncommon" },
-                    "Rose Grey Bay": { source: "Stable", stable: "Blackwater Stable", rarity: "uncommon" }
+                    "Rose Grey Bay": { source: "Stable", stable: "Blackwater Stable", rarity: "uncommon" },
+                    "Warped Brindle": { source: "Wild", rarity: "uncommon" }
                 },
                 "Ardennes": {
                     "Bay Roan": { source: "Stable", stable: "Scarlett Meadows Stable", rarity: "uncommon" },
@@ -129,7 +124,7 @@
                 "Dutch Warmblood": {
                     "Cremello": { source: "Awarded via Story", note: "The Veteran IV", rarity: "awarded" },
                     "Sooty Buckskin": { source: "Stable", stable: "Scarlett Meadows Stable", rarity: "uncommon" },
-                    "Seal Brown": { source: "Stable", stable: "Valentine Stable", rarity: "uncommon" },
+                    "Seal Brown": { source: "Stable", stable: "Strawberry Stable", rarity: "uncommon" },
                     "Chocolate Roan": { source: "Stable", stable: "Saint Denis Stable", rarity: "uncommon" }
                 },
                 "Hungarian Halfbred": {
@@ -167,12 +162,15 @@
                     "Chestnut": { source: "Wild", rarity: "common" },
                     "Dapple Bay": { source: "Wild", rarity: "common" },
                     "Red Roan": { source: "Wild", rarity: "common" },
-                    "Flaxen Roan": { source: "Stable", stable: "Valentine Stable", rarity: "uncommon" }
+                    "Flaxen Roan": { source: "Stable", stable: "Valentine Stable", rarity: "uncommon" },
+                    "Mahogany Bay": { source: "Awarded via Story", note: "Outlaws from the West", rarity: "awarded" },
+                    "Gold Palomino": { source: "Wild", rarity: "common" }
                 },
                 "Thoroughbred": {
                     "Brindle": { source: "Awarded via Story", note: "The Sheep and the Goats", rarity: "awarded" },
                     "Blood Bay": { source: "Stable", stable: "Valentine Stable", rarity: "uncommon" },
-                    "Dapple Grey": { source: "Stable", stable: "Saint Denis Stable", rarity: "uncommon" }
+                    "Dapple Grey": { source: "Stable", stable: "Saint Denis Stable", rarity: "uncommon" },
+                    "Seal Brown": { source: "Awarded via Story", note: "Epilogue - Part 1 (Rachel)", rarity: "awarded" }
                 },
                 "Turkoman": {
                     "Dark Bay": { source: "Stable", stable: "Saint Denis Stable", rarity: "uncommon" },
