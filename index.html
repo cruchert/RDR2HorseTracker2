@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RDR2 Horse Tracker</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 10px; }
+        h2 { margin-top: 20px; }
+        h3 { margin-left: 10px; }
+        label { display: block; margin-left: 20px; }
+        .common { color: black; }
+        .uncommon { color: #666; font-style: italic; }
+        .checked { text-decoration: line-through; }
+    </style>
+</head>
+<body>
+    <h1>RDR2 Horse Tracker</h1>
+    <script>
+        const horseData = {
+            "Story Mode": {
+                "American Paint": {
+                    "Overo": { source: "Wild", rarity: "common" },
+                    "Tobiano": { source: "Wild", rarity: "common" },
+                    "Splashed White": { source: "Stable", stable: "Tumbleweed Stable", rarity: "uncommon" },
+                    "Grey Overo": { source: "Stable", stable: "Valentine Stable", rarity: "uncommon" }
+                },
+                "American Standardbred": {
+                    "Palomino": { source: "Wild", rarity: "common" },
+                    "Silvery Grey": { source: "Wild", rarity: "common" },
+                    "Black": { source: "Stable", stable: "Tumbleweed Stable", rarity: "uncommon" },
+                    "Buckskin": { source: "Stable", stable: "Valentine Stable", rarity: "uncommon" }
+                },
+                "Andalusian": {
+                    "Dark Bay": { source: "Stable", stable: "Strawberry Stable", rarity: "uncommon" },
+                    "Rose Grey": { source: "Stable", stable: "Van Horn Stable", rarity: "uncommon" }
+                },
+                "Appaloosa": {
+                    "Blanket": { source: "Wild", rarity: "common" },
+                    "Leopard": { source: "Wild", rarity: "common" },
+                    "Brown Leopard": { source: "Stable", stable: "Tumbleweed Stable", rarity: "uncommon" },
+                    "Leopard Blanket": { source: "Stable", stable: "Van Horn Stable", rarity: "uncommon" }
+                },
+                "Arabian": {
+                    "White": { source: "Wild", rarity: "uncommon" },
+                    "Black": { source: "Stable", stable: "Saint Denis Stable", rarity: "uncommon" },
+                    "Rose Grey Bay": { source: "Stable", stable: "Blackwater Stable", rarity: "uncommon" }
+                },
+                "Ardennes": {
+                    "Bay Roan": { source: "Stable", stable: "Scarlett Meadows Stable", rarity: "uncommon" },
+                    "Strawberry Roan": { source: "Stable", stable: "Valentine Stable", rarity: "uncommon" }
+                },
+                "Dutch Warmblood": {
+                    "Cremello": { source: "Wild", rarity: "common" },
+                    "Sooty Buckskin": { source: "Stable", stable: "Scarlett Meadows Stable", rarity: "uncommon" },
+                    "Seal Brown": { source: "Stable", stable: "Valentine Stable", rarity: "uncommon" },
+                    "Chocolate Roan": { source: "Stable", stable: "Saint Denis Stable", rarity: "uncommon" }
+                },
+                "Hungarian Halfbred": {
+                    "Flaxen Chestnut": { source: "Wild", rarity: "common" },
+                    "Piebald Tobiano": { source: "Wild", rarity: "common" },
+                    "Dark Dapple Grey": { source: "Stable", stable: "Valentine Stable", rarity: "uncommon" }
+                },
+                "Morgan": {
+                    "Bay": { source: "Wild", rarity: "common" },
+                    "Palomino": { source: "Wild", rarity: "common" },
+                    "Bay Roan": { source: "Stable", stable: "Valentine Stable", rarity: "uncommon" },
+                    "Flaxen Chestnut": { source: "Stable", stable: "Tumbleweed Stable", rarity: "uncommon" }
+                },
+                "Mustang": {
+                    "Grullo Dun": { source: "Wild", rarity: "common" },
+                    "Wild Bay": { source: "Wild", rarity: "common" },
+                    "Tiger Striped Bay": { source: "Wild", rarity: "uncommon" }
+                },
+                "Nokota": {
+                    "Blue Roan": { source: "Wild", rarity: "common" },
+                    "White Roan": { source: "Wild", rarity: "common" },
+                    "Reverse Dapple Roan": { source: "Stable", stable: "Saint Denis Stable", rarity: "uncommon" }
+                },
+                "Shire": {
+                    "Dark Bay": { source: "Story Only", note: "Mission-specific", rarity: "uncommon" },
+                    "Light Grey": { source: "Story Only", note: "Mission-specific", rarity: "uncommon" },
+                    "Raven Black": { source: "Story Only", note: "Mission-specific", rarity: "uncommon" }
+                },
+                "Suffolk Punch": {
+                    "Sorrel": { source: "Wild", rarity: "common" },
+                    "Red Chestnut": { source: "Wild", rarity: "common" }
+                },
+                "Tennessee Walker": {
+                    "Black Rabicano": { source: "Wild", rarity: "common" },
+                    "Chestnut": { source: "Wild", rarity: "common" },
+                    "Dapple Bay": { source: "Wild", rarity: "common" },
+                    "Red Roan": { source: "Wild", rarity: "common" },
+                    "Flaxen Roan": { source: "Stable", stable: "Valentine Stable", rarity: "uncommon" }
+                },
+                "Thoroughbred": {
+                    "Brindle": { source: "Wild", rarity: "common" },
+                    "Blood Bay": { source: "Stable", stable: "Valentine Stable", rarity: "uncommon" },
+                    "Dapple Grey": { source: "Stable", stable: "Saint Denis Stable", rarity: "uncommon" }
+                },
+                "Turkoman": {
+                    "Dark Bay": { source: "Stable", stable: "Saint Denis Stable", rarity: "uncommon" },
+                    "Gold": { source: "Stable", stable: "Saint Denis Stable", rarity: "uncommon" },
+                    "Silver": { source: "Stable", stable: "Blackwater Stable", rarity: "uncommon" }
+                }
+            },
+            "Online Mode": {
+                "American Paint": {
+                    "Overo": { source: "Stable", stable: "Any Stable", rarity: "common" },
+                    "Tobiano": { source: "Stable", stable: "Any Stable", rarity: "common" },
+                    "Splashed White": { source: "Stable", stable: "Any Stable", rarity: "common" },
+                    "Grey Overo": { source: "Stable", stable: "Any Stable", rarity: "common" }
+                },
+                "American Standardbred": {
+                    "Palomino": { source: "Stable", stable: "Any Stable", rarity: "common" },
+                    "Silvery Grey": { source: "Stable", stable: "Any Stable", rarity: "common" },
+                    "Black": { source: "Stable", stable: "Any Stable", rarity: "common" },
+                    "Buckskin": { source: "Stable", stable: "Any Stable", rarity: "common" }
+                },
+                "Andalusian": {
+                    "Dark Bay": { source: "Stable", stable: "Any Stable", rarity: "common" },
+                    "Rose Grey": { source: "Stable", stable: "Any Stable", rarity: "common" }
+                },
+                "Appaloosa": {
+                    "Blanket": { source: "Stable", stable: "Any Stable", rarity: "common" },
+                    "Leopard": { source: "Stable", stable: "Any Stable", rarity: "common" },
+                    "Brown Leopard": { source: "Stable", stable: "Any Stable", rarity: "common" },
+                    "Leopard Blanket": { source: "Stable", stable: "Any Stable", rarity: "common" }
+                },
+                "Arabian": {
+                    "White": { source: "Stable", stable: "Any Stable", rarity: "uncommon" },
+                    "Black": { source: "Stable", stable: "Any Stable", rarity: "uncommon" },
+                    "Rose Grey Bay": { source: "Stable", stable: "Any Stable", rarity: "uncommon" }
+                },
+                "Ardennes": {
+                    "Bay Roan": { source: "Stable", stable: "Any Stable", rarity: "common" },
+                    "Strawberry Roan": { source: "Stable", stable: "Any Stable", rarity: "common" }
+                },
+                "Breton": {
+                    "Red Roan": { source: "Stable", stable: "Any Stable", note: "Bounty Hunter Role", rarity: "uncommon" },
+                    "Mealy Dapple Bay": { source: "Stable", stable: "Any Stable", note: "Bounty Hunter Role", rarity: "uncommon" },
+                    "Steel Grey": { source: "Stable", stable: "Any Stable", note: "Bounty Hunter Role", rarity: "uncommon" }
+                },
+                "Dutch Warmblood": {
+                    "Cremello": { source: "Stable", stable: "Any Stable", rarity: "common" },
+                    "Sooty Buckskin": { source: "Stable", stable: "Any Stable", rarity: "common" },
+                    "Seal Brown": { source: "Stable", stable: "Any Stable", rarity: "common" },
+                    "Chocolate Roan": { source: "Stable", stable: "Any Stable", rarity: "common" }
+                },
+                "Gypsy Cob": {
+                    "Piebald": { source: "Stable", stable: "Any Stable", note: "Naturalist Role", rarity: "uncommon" },
+                    "Skewbald": { source: "Stable", stable: "Any Stable", note: "Naturalist Role", rarity: "uncommon" }
+                },
+                "Hungarian Halfbred": {
+                    "Flaxen Chestnut": { source: "Stable", stable: "Any Stable", rarity: "common" },
+                    "Piebald Tobiano": { source: "Stable", stable: "Any Stable", rarity: "common" },
+                    "Dark Dapple Grey": { source: "Stable", stable: "Any Stable", rarity: "common" }
+                },
+                "Kladruber": {
+                    "Cremello": { source: "Stable", stable: "Any Stable", note: "Trader Role", rarity: "uncommon" },
+                    "Grey Overo": { source: "Stable", stable: "Any Stable", note: "Trader Role", rarity: "uncommon" }
+                },
+                "Morgan": {
+                    "Bay": { source: "Stable", stable: "Any Stable", rarity: "common" },
+                    "Palomino": { source: "Stable", stable: "Any Stable", rarity: "common" },
+                    "Bay Roan": { source: "Stable", stable: "Any Stable", rarity: "common" },
+                    "Flax Infrastructuren Chestnut": { source: "Stable", stable: "Any Stable", rarity: "common" }
+                },
+                "Mustang": {
+                    "Grullo Dun": { source: "Stable", stable: "Any Stable", rarity: "common" },
+                    "Wild Bay": { source: "Stable", stable: "Any Stable", rarity: "common" },
+                    "Tiger Striped Bay": { source: "Stable", stable: "Any Stable", rarity: "uncommon" }
+                },
+                "Nokota": {
+                    "Blue Roan": { source: "Stable", stable: "Any Stable", rarity: "common" },
+                    "White Roan": { source: "Stable", stable: "Any Stable", rarity: "common" },
+                    "Reverse Dapple Roan": { source: "Stable", stable: "Any Stable", rarity: "common" }
+                },
+                "Suffolk Punch": {
+                    "Sorrel": { source: "Stable", stable: "Any Stable", rarity: "common" },
+                    "Red Chestnut": { source: "Stable", stable: "Any Stable", rarity: "common" }
+                },
+                "Tennessee Walker": {
+                    "Black Rabicano": { source: "Stable", stable: "Any Stable", rarity: "common" },
+                    "Chestnut": { source: "Stable", stable: "Any Stable", rarity: "common" },
+                    "Dapple Bay": { source: "Stable", stable: "Any Stable", rarity: "common" },
+                    "Red Roan": { source: "Stable", stable: "Any Stable", rarity: "common" },
+                    "Flaxen Roan": { source: "Stable", stable: "Any Stable", rarity: "common" }
+                },
+                "Thoroughbred": {
+                    "Brindle": { source: "Stable", stable: "Any Stable", rarity: "common" },
+                    "Blood Bay": { source: "Stable", stable: "Any Stable", rarity: "common" },
+                    "Dapple Grey": { source: "Stable", stable: "Any Stable", rarity: "common" }
+                },
+                "Turkoman": {
+                    "Dark Bay": { source: "Stable", stable: "Any Stable", rarity: "uncommon" },
+                    "Gold": { source: "Stable", stable: "Any Stable", rarity: "uncommon" },
+                    "Silver": { source: "Stable", stable: "Any Stable", rarity: "uncommon" }
+                }
+            }
+        };
+
+        let html = '';
+        for (const mode in horseData) {
+            html += `<h2>${mode}</h2>`;
+            for (const breed in horseData[mode]) {
+                html += `<h3>${breed}</h3>`;
+                for (const coat in horseData[mode][breed]) {
+                    const data = horseData[mode][breed][coat];
+                    let sourceText = data.source === "Wild" ? "Found in the wild" : 
+                                    data.source === "Stable" ? `Purchased at ${data.stable}` : 
+                                    "Story Mode only";
+                    if (data.note) sourceText += ` (${data.note})`;
+                    const id = `${mode}-${breed}-${coat}`.replace(/\s/g, "-");
+                    const rarityClass = data.rarity === "common" ? "common" : "uncommon";
+                    html += `<label><input type="checkbox" id="${id}" onchange="toggleStrikethrough(this)"> <span class="${rarityClass}" id="text-${id}">${coat} - ${sourceText}</span></label>`;
+                }
+            }
+        }
+        document.body.insertAdjacentHTML('beforeend', html);
+
+        function toggleStrikethrough(checkbox) {
+            const textSpan = document.getElementById(`text-${checkbox.id}`);
+            if (checkbox.checked) {
+                textSpan.classList.add("checked");
+            } else {
+                textSpan.classList.remove("checked");
+            }
+            localStorage.setItem(checkbox.id, checkbox.checked);
+        }
+
+        for (const mode in horseData) {
+            for (const breed in horseData[mode]) {
+                for (const coat in horseData[mode][breed]) {
+                    const id = `${mode}-${breed}-${coat}`.replace(/\s/g, "-");
+                    const checkbox = document.getElementById(id);
+                    if (checkbox) {
+                        checkbox.checked = localStorage.getItem(id) === "true";
+                        toggleStrikethrough(checkbox); // Apply initial state
+                        checkbox.onchange = () => toggleStrikethrough(checkbox);
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
