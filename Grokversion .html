@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RDR2 Horse Tracker</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 10px; }
+        h2 { margin-top: 20px; }
+        h3 { margin-left: 10px; }
+        label { display: block; margin-left: 20px; }
+    </style>
+</head>
+<body>
+    <h1>RDR2 Horse Tracker</h1>
+    <script>
+        const horseData = {
+            "Story Mode": {
+                "American Paint": {"Overo":{"source":"Wild"},"Tobiano":{"source":"Wild"},"Splashed White":{"source":"Stable","stable":"Tumbleweed Stable"},"Grey Overo":{"source":"Stable","stable":"Valentine Stable"}},
+                "American Standardbred": {"Palomino":{"source":"Wild"},"Silvery Grey":{"source":"Wild"},"Black":{"source":"Stable","stable":"Tumbleweed Stable"},"Buckskin":{"source":"Stable","stable":"Valentine Stable"}},
+                "Andalusian": {"Dark Bay":{"source":"Stable","stable":"Strawberry Stable"},"Rose Grey":{"source":"Stable","stable":"Van Horn Stable"}},
+                "Appaloosa": {"Blanket":{"source":"Wild"},"Leopard":{"source":"Wild"},"Brown Leopard":{"source":"Stable","stable":"Tumbleweed Stable"},"Leopard Blanket":{"source":"Stable","stable":"Van Horn Stable"}},
+                "Arabian": {"White":{"source":"Wild"},"Black":{"source":"Stable","stable":"Saint Denis Stable"},"Rose Grey Bay":{"source":"Stable","stable":"Blackwater Stable"}},
+                "Ardennes": {"Bay Roan":{"source":"Stable","stable":"Scarlett Meadows Stable"},"Strawberry Roan":{"source":"Stable","stable":"Valentine Stable"}},
+                "Dutch Warmblood": {"Cremello":{"source":"Wild"},"Sooty Buckskin":{"source":"Stable","stable":"Scarlett Meadows Stable"},"Seal Brown":{"source":"Stable","stable":"Valentine Stable"},"Chocolate Roan":{"source":"Stable","stable":"Saint Denis Stable"}},
+                "Hungarian Halfbred": {"Flaxen Chestnut":{"source":"Wild"},"Piebald Tobiano":{"source":"Wild"},"Dark Dapple Grey":{"source":"Stable","stable":"Valentine Stable"}},
+                "Morgan": {"Bay":{"source":"Wild"},"Palomino":{"source":"Wild"},"Bay Roan":{"source":"Stable","stable":"Valentine Stable"},"Flaxen Chestnut":{"source":"Stable","stable":"Tumbleweed Stable"}},
+                "Mustang": {"Grullo Dun":{"source":"Wild"},"Wild Bay":{"source":"Wild"},"Tiger Striped Bay":{"source":"Wild"}},
+                "Nokota": {"Blue Roan":{"source":"Wild"},"White Roan":{"source":"Wild"},"Reverse Dapple Roan":{"source":"Stable","stable":"Saint Denis Stable"}},
+                "Shire": {"Dark Bay":{"source":"Story Only","note":"Mission-specific"},"Light Grey":{"source":"Story Only","note":"Mission-specific"},"Raven Black":{"source":"Story Only","note":"Mission-specific"}},
+                "Suffolk Punch": {"Sorrel":{"source":"Wild"},"Red Chestnut":{"source":"Wild"}},
+                "Tennessee Walker": {"Black Rabicano":{"source":"Wild"},"Chestnut":{"source":"Wild"},"Dapple Bay":{"source":"Wild"},"Red Roan":{"source":"Wild"},"Flaxen Roan":{"source
